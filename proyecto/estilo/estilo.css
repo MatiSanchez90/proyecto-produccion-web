@@ -1,0 +1,92 @@
+.fondo{
+  background-color: #9900cc;
+}
+
+.tamano{
+    max-width: 3em;
+}
+
+.tamano2{
+    margin-top: 2.5em; margin-bottom: 2.5em;
+}
+
+.tamano3{
+    margin-top: 1.25em;
+}
+
+.tamano9{
+    max-width: 43.75em;
+}
+
+.centrado{
+    padding-top: 2.5em;
+}
+
+.centrado2{
+    padding-bottom: 2.5em;
+}
+
+.fuente{
+    font-size: 2.5em;
+}
+
+.tamano4{
+    margin-top: 3em;
+}
+
+.tamano5{
+    margin-bottom: 3em;
+}
+
+.tamano6{
+    max-width: 75em;
+}
+
+
+.tamano7{
+    max-width: 18.75em;
+}
+
+.margen{
+    margin: auto;
+}
+
+
+.margenb{
+    margin-bottom: 0.60em;
+}
+
+
+.ha{
+    height: auto;
+}
+
+.margenb{
+    margin-bottom: 1.25em;
+}
+
+.tamano8{
+    max-width: 50em;
+}
+
+.pad{
+    padding: 0em;
+}
+
+.mrg{
+    padding: 0em;
+}
+
+.font{
+    font-family: 'M PLUS 1 Code', sans-serif;
+}
+
+
+p,span{
+    font-family: 'Roboto Mono', monospace;
+}
+
+h1,h2,h3{
+    font-family: 'Roboto Mono', monospace;
+}
+
