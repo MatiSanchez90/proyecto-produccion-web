@@ -1,6 +1,7 @@
 <?php 
 require_once('../configuracion/configuracion.php');
-//require_once('../modelo/conexion.php');
+require_once('../modelo/conexion.php');
+require_once('../modelo/producto.php');
 require_once('../funciones/producto.php');
 //try{
   //$conexion1 = new PDO(
@@ -9,7 +10,12 @@ require_once('../funciones/producto.php');
   //echo "Falló la conexión: " . $e1->getMessage();
   //exit;
 //}
-$producto = getProducto($conexion1);
+try {
+  $producto = Producto::all();
+} catch (PDOException $e) {
+  echo 'ha ocurrido un error';
+  exit;
+}
 
 
 
@@ -42,6 +48,7 @@ $producto = getProducto($conexion1);
 <div class="container">
         <h1 class="text-center"> Lista de productos </h1>
         <div class="container">
+          <div><button a="" type="submit" class="btn btn-primary" name="submit" >Agregar Producto</button> <a href="agregar_producto.php"></a></div>
         <table class="table">
             <thead>
                 <tr>
