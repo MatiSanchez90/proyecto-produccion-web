@@ -8,7 +8,7 @@
 class Configuracion{
   //base de datos
    const DB_HOST= 'localhost';
-   const DB_NAME= 'ChiquitoPC';
+   const DB_NAME= 'chiquitopc';
    const DB_USER= 'root';
    const DB_PASSWORD= '';
    
@@ -24,4 +24,3 @@ class Configuracion{
 //}
 
 ?>
-
