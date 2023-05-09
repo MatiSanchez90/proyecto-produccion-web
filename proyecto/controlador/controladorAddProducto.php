@@ -5,8 +5,6 @@ require_once('../modelo/producto.php');
 
 
 
-
-
 $nombre = test_input($_POST["nombre"] ?? null);
 $descripcion = test_input($_POST["descripcion"] ?? null);
 $precio = test_input($_POST["precio"] ?? null);
