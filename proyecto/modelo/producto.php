@@ -5,15 +5,13 @@ class Producto{
     private $precio;
     
     
-    
-    
     public function __construct($p_nombre,$p_descripcion,$p_precio,){
         $this->nombre = $p_nombre;
         $this->descripcion= $p_descripcion;
         $this->precio= $p_precio;
         $this->insert();
     }
-    
+  
     
     public function getNombre(){
         return $this->nombre;
@@ -48,15 +46,12 @@ public static function all(){
 
 private function insert(){
     $cnx = Conexion::getInstance();
-    $consulta = $cnx->prepare('INSERT INTO producto (id_producto,nombre,descripcion,precio,imagen)
-     VALUES (:id,:nombre, :descripcion,:precio,:imagen)');
-    $consulta->bindValue(':id','');
+    $consulta = $cnx->prepare('INSERT INTO producto (nombre,descripcion,precio)
+    VALUES (:nombre,:descripcion,:precio)');
     $consulta->bindValue(':nombre',$this->nombre);
-    $consulta->bindValue(':descripcioin',$this->descripcion);
+    $consulta->bindValue(':descripcion',$this->descripcion);
     $consulta->bindValue(':precio',$this->precio);
-    $consulta->bindValue(':imagen','');
     $consulta->execute();
-
 }
 
 
