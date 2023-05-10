@@ -9,27 +9,29 @@ $apellido = test_input($_POST["apellido"] ?? null);
 $mail = test_input($_POST["mail"] ?? null);
 $nombre_usuario = test_input($_POST["nombre_usuario"] ?? null);
 $clave = test_input($_POST["clave"] ?? null);
-$isAdmin = test_input($_POST["is_admin"] ?? null);
 
-$errores = array();
+$erroresUsuario = array();
 
 if( isset($_POST["submit"]) ) {
 
     if( empty($nombre) ){
-      array_push($errores, 'Usted debe ingresar un nombre.');
+      array_push($erroresUsuario, 'Usted debe ingresar un nombre.');
   }
   if( empty($apellido) ){
-      array_push($errores ,'Usted debe ingresar un apellido.');
+      array_push($erroresUsuario ,'Usted debe ingresar un apellido.');
   }
   if( empty($mail) ){
-      array_push($errores, 'Usted debe ingresar un mail.');
+      array_push($erroresUsuario, 'Usted debe ingresar un mail.');
   }
+  if( empty($nombre_usuario) ){
+    array_push($erroresUsuario, 'Usted debe ingresar un usuario.');
+}
   if( empty($clave) ){
-      array_push($errores, 'Usted debe ingresar un password.');
+      array_push($erroresUsuario, 'Usted debe ingresar un password.');
   }
   
-  if( count($errores) == 0 ){
-      $usuario = new Usuario($nombre,$apellido,$mail,$nombre_usuario,$clave, $is_admin);
+  if( count($erroresUsuario) == 0 ){
+      $usuario = new Usuario($nombre,$apellido,$mail,$nombre_usuario,$clave);
     
       }
   }

@@ -19,14 +19,31 @@
 
 <body>
     <!--NAVBAR-->
-    <?php 
-    require_once('../layout/_nav.php');
-    require_once('../controlador/controladorAddUsuario.php') ;
-    foreach($errores as $error);
-    ?>
+    <nav class="navbar navbar-expand-lg navbar-light fondo">
+        <a class="navbar-brand text-white font-weight-bold font" href="#"><img src="../img/chikitopclogo.png"
+                alt="Chiquito PC Logo" class="tamano">CHIQUITO PC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse opciones_usuario" id="navbarTogglerDemo03">
+        </div>
+    </nav>
     <!-- CONTENIDO -->
-    <div class="registration-form">
+    <div class="container">
+        <h1 class="mt-5">Crear nuevo usuario.</h1>
         <form action="registro.php" method="post">
+            <ul>
+                <?php require_once('../controlador/controladorAddUsuario.php') ?>
+                <?php foreach($erroresUsuario as $error): ?>
+                <li class="text text-danger"> <?php echo $error ?> </li>
+                <?php endforeach ?>
+            </ul>
             <div class="form-icon">
                 <span><i class="icon icon-user"></i></span>
             </div>
@@ -43,16 +60,14 @@
                 <input type="text" class="form-control item" name="nombre_usuario" placeholder="Usuario">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" name="clave" placeholder="Password">
+                <input type="password" class="form-control item" name="clave" placeholder="Clave">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" name="is_admin" placeholder="Tipo de Usuario">
+                <button type="submit" name="submit" class="btn btn-dark btn-block create-account">Crear
+                    Usuario</button>
             </div>
             <div class="form-group">
-                <button type="submit" name="registro" class="btn btn-block create-account">Crear Usuario</button>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-block create-account2" href="login.php">Volver atrás</a>
+                <a class="btn btn-block btn-secondary create-account2" href="login.php">Volver atrás</a>
             </div>
         </form>
         <div class="social-media">

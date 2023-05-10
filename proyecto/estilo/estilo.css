@@ -109,3 +109,14 @@ h3 {
 .btn-submit {
   margin-top: 30px;
 }
+
+.navbar-collapse.opciones_usuario {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+a .nav-link {
+  color: aqua;
+  background-color: pink;
+  font-size: 10em;
+}
