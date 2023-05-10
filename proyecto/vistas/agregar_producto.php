@@ -41,6 +41,7 @@
             <div class="container d-flex justify-content-center col-lg-6 col-xs-12">
                 <form action="agregar_producto.php" method="post">
                     <fieldset>
+
                         <label for="nombre"> Nombre: </label>
                         <br>
                         <input type="text" name="nombre" placeholder="ingrese nombre del articulo" required>

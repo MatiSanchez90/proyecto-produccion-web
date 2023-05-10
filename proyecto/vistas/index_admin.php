@@ -1,3 +1,18 @@
+<?php 
+session_start();
+require_once('../configuracion/configuracion.php');
+require_once('../modelo/conexion.php');
+require_once('../modelo/usuario.php');
+require_once('../controlador/controladorAddUsuario.php');
+
+try {
+  $usuario = Usuario::all();
+} catch (PDOException $e) {
+  echo 'Ha ocurrido un error';
+  exit;
+}
+?>
+
 <!doctype html>
 <html lang="es">
 
@@ -20,8 +35,8 @@
 <body>
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-light fondo">
-        <a class="navbar-brand text-white font-weight-bold font" href="#"><img src="../img/chikitopclogo.png"
-                alt="Chiquito PC Logo" class="tamano">CHIQUITO PC</a>
+        <a class="navbar-brand text-white font-weight-bold font" href="../vistas/index.php"><img
+                src="../img/chikitopclogo.png" alt="Chiquito PC Logo" class="tamano">CHIQUITO PC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -29,48 +44,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link col-md-6 text-white" href="../vistas/productos.php">Productos</a>
+                </li>
+
+                <li>
+                    <a class="nav-link text-white" href="../vistas/consulta.php">Consulta</a>
+                </li>
             </ul>
         </div>
         <div class="collapse navbar-collapse opciones_usuario" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                        href="../vistas/perfil.php"><?php echo 'Bienvenido Admin ('.$_SESSION["nombre"].')';?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../vistas/login.php" <?php session_destroy();?>>Cerrar
+                        Sesion</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <!-- CONTENIDO -->
     <div class="container">
-        <h1 class="mt-5">Crear nuevo usuario.</h1>
-        <form action="registro.php" method="post">
-            <ul>
-                <?php require_once('../controlador/controladorAddUsuario.php') ?>
-                <?php foreach($erroresUsuario as $error): ?>
-                <li class="text text-danger"> <?php echo $error ?> </li>
-                <?php endforeach ?>
-            </ul>
-            <div class="form-icon">
-                <span><i class="icon icon-user"></i></span>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control item" name="nombre" placeholder="Nombre">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control item" name="apellido" placeholder="Apellido">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control item" name="mail" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control item" name="nombre_usuario" placeholder="Usuario">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control item" name="clave" placeholder="Clave">
-            </div>
-            <div class="form-group">
-                <button type="submit" name="submit" class="btn btn-dark btn-block create-account">Crear
-                    Usuario</button>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-block btn-secondary create-account2" href="login.php">Volver atrás</a>
-            </div>
-        </form>
-        <div class="social-media">
+        <h1 class="mt-5 d-flex justify-content-center">Seccion Administrador</h1>
+        <img class="d-flex justify-content-center ml-5" src="../img/admin.jpg" alt="">
+        <div class="login-dark mt-1">
+            <div><a class="btn btn-dark btn-block btn2 mb-4" href="registro.php">Ver Lista Usuarios</a></div>
+            <div><a class="btn btn-secondary btn-block btn2" href="registro.php">Ver Lista Productos</a></div>
         </div>
     </div>
     <!-- FOOTER -->

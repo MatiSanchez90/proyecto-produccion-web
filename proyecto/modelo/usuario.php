@@ -14,7 +14,7 @@ public function __construct($p_nombre,$p_apellido,$p_mail,$p_nombre_usuario,$p_c
     $this->mail= $p_mail;
     $this->nombre_usuario= $p_nombre_usuario;
     $this->clave= $p_clave;
-    $this->is_admin = $p_is_admin;
+    $this->is_admin= $p_is_admin;
     $this->insert();
 }
 
@@ -42,8 +42,8 @@ public function setMailUsuario($p_mail){
 public function getUsuarioNombre(){
     return $this->mail;
 }
-public function setUsuarioNombre($p_usuario_nombre){
-    $this->nombre_usuario = $p_usuario_nombre;
+public function setUsuarioNombre($p_nombre_usuario){
+    $this->nombre_usuario = $p_nombre_usuario;
 }
 
 public function getPassUsuario(){
@@ -52,12 +52,8 @@ public function getPassUsuario(){
 public function setPassUsuario($p_clave){
     $this->clave = $p_clave;
 }
-
-public function getadmin(){
+public function getIsAdmin(){
     return $this->is_admin;
-}
-public function setadmin($p_is_admin){
-    $this->is_admin = $p_is_admin;
 }
 
 
@@ -68,10 +64,11 @@ public static function all(){
     return $consulta->fetchALL();
 }
 
+
 private function insert(){
     $cnx = Conexion::getInstance();
-    $consulta = $cnx->prepare('INSERT INTO usuario (nombre,apellido,mail, nombre_usuario,clave, is_admin)
-    VALUES (:nombre,:apellido,:nombre_usuario,:clave,:is_admin)');
+    $consulta = $cnx->prepare('INSERT INTO usuario (nombre,apellido,mail,nombre_usuario,clave, is_admin)
+    VALUES (:nombre,:apellido,:mail,:nombre_usuario,:clave, :is_admin)');
     $consulta->bindValue(':nombre',$this->nombre);
     $consulta->bindValue(':apellido',$this->apellido);
     $consulta->bindValue(':mail',$this->mail);
