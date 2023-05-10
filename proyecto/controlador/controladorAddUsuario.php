@@ -31,7 +31,7 @@ if( isset($_POST["submit"]) ) {
   }
   
   if( count($erroresUsuario) == 0 ){
-      $usuario = new Usuario($nombre,$apellido,$mail,$nombre_usuario,$clave);
+      $usuario = new Usuario($nombre,$apellido,$mail,$nombre_usuario,$clave, $is_admin="false");
     
       }
   }

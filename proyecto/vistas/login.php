@@ -86,22 +86,31 @@ try {
   
             foreach($usuario as $usu): 
                 
-               if($usu["nombre_usuario"] == $usuarioEntrante && $usu["clave"] == $claveEntrante){
+               if($usu["nombre_usuario"] == $usuarioEntrante && $usu["clave"] == $claveEntrante && $usu["is_admin"] == "false"){
                 $_SESSION['nombre'] = $usu["nombre"];
                
              /*   echo '<script type="text/javascript">
                           window.onload = function () { alert("Bienvenido"); }
             </script>';*/
             header("Location: http://localhost:8080/TP1/proyecto-produccion-web/proyecto/vistas/index.php");
-            }else{
+            }else if($usu["nombre_usuario"] == $usuarioEntrante && $usu["clave"] == $claveEntrante && $usu["is_admin"] == "true"){
+                $_SESSION['nombre'] = $usu["nombre"];
+              
+                header("Location: http://localhost:8080/TP1/proyecto-produccion-web/proyecto/vistas/index_admin.php");
          /*   echo '<script type="text/javascript">
             window.onload = function() {
                 alert("Usuario o clave incorrectos.");
             }
             </script>';*/
-
-            }
+            }else{
+                /*   echo '<script type="text/javascript">
+                   window.onload = function() {
+                       alert("Usuario o clave incorrectos.");
+                   }
+                   </script>';*/
+                }
         endforeach;
+
         ?>
         </div>
     </div>
