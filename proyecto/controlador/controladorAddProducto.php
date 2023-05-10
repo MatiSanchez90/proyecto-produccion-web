@@ -9,7 +9,13 @@ $nombre = test_input($_POST["nombre"] ?? null);
 $descripcion = test_input($_POST["descripcion"] ?? null);
 $precio = test_input($_POST["precio"] ?? null);
 
-
+if(isset($_POST["submit"])){
+    $producto= new Producto(
+        $_POST['nombre'],
+        $_POST['descripcion'],
+        $_POST['precio']
+    );
+}
 
 $errores = array();
 
@@ -27,7 +33,8 @@ if( empty($precio) ){
     array_push($errores, 'Usted debe ingresar un precio');
 }
 if( count($errores) == 0 ){
-    $producto = new Producto($nombre,$descripcion,$precio);
+    $producto->insert();
+    header('location:../vistas/productos.php');
   
 }
 }

@@ -10,7 +10,7 @@ class Usuario{
     
 public function __construct($p_nombre,$p_apellido,$p_mail,$p_nombre_usuario,$p_clave, $p_is_admin){
     $this->nombre= $p_nombre;
-    $this->nombre= $p_apellido;
+    $this->apellido= $p_apellido;
     $this->mail= $p_mail;
     $this->nombre_usuario= $p_nombre_usuario;
     $this->clave= $p_clave;
@@ -50,14 +50,14 @@ public function getPassUsuario(){
     return $this->clave;
 }
 public function setPassUsuario($p_clave){
-    $this->password = $p_clave;
+    $this->clave = $p_clave;
 }
 
 public function getadmin(){
     return $this->is_admin;
 }
 public function setadmin($p_is_admin){
-    $this->password = $p_is_admin;
+    $this->is_admin = $p_is_admin;
 }
 
 
