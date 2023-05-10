@@ -2,14 +2,7 @@
 require_once('../configuracion/configuracion.php');
 require_once('../modelo/conexion.php');
 require_once('../modelo/producto.php');
-require_once('../funciones/producto.php');
-//try{
-  //$conexion1 = new PDO(
-    //  'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASSWORD);
-//}catch(PDOException $e1){
-  //echo "Falló la conexión: " . $e1->getMessage();
-  //exit;
-//}
+
 try {
   $producto = Producto::all();
 } catch (PDOException $e) {
@@ -56,6 +49,8 @@ try {
                         <th scope="col"> Nombre </th>
                         <th scope="col"> Descripcion </th>
                         <th scope="col"> Precio </th>
+                        <th scope="col"> Actualizar </th>
+                        <th scope="col"> Eliminar </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +59,8 @@ try {
                         <td> <?php echo $p['nombre'] ?> </td>
                         <td> <?php echo $p['descripcion'] ?> </td>
                         <td> <?php echo $p['precio'] ?> </td>
+                        <td><a href="../controlador/controladorUpdateProducto.php?id=<?php echo $p ['id'] ?>">Actualizar</a></td>
+                        <td><a href="../controlador/controladorDeleteProducto.php?id=<?php echo $p ['id'] ?>">Eliminar</a></td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>
