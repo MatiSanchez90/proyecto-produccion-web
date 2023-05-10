@@ -1,3 +1,16 @@
+<?php 
+require_once('../configuracion/configuracion.php');
+require_once('../modelo/conexion.php');
+require_once('../modelo/producto.php');
+require_once('../controlador/controladorUpdateProducto.php');
+try {
+    $producto = Producto::buscar($id);
+} catch (PDOException $e) {
+  echo 'ha ocurrido un error';
+  exit;
+}
+?>
+
 <!doctype html>
 <html lang="es">
 
@@ -28,34 +41,26 @@
         <div class="row">
             <div class="col-lg-6 col-xs-12 d-flex justify-content-center">
                 <div>
-                    <h1 class="font-weight-bold text-center">ALTA PROUCTO</h1>
-                    <ul>
-                        <?php require_once('../controlador/controladorAddProducto.php') ?>
-                        <?php foreach($errores as $error): ?>
-                        <li class="text text-danger"> <?php echo $error ?> </li>
-                        <?php endforeach ?>
-                    </ul>
+                    <h1 class="font-weight-bold text-center">ACTUALIZAR PRODUCTO</h1>
                     <img class="d-flex tamano7 margen" src="../img/chikitopc.png" alt="Logo de ChiquitoPC">
                 </div>
             </div>
             <div class="container d-flex justify-content-center col-lg-6 col-xs-12">
-                <form action="agregar_producto.php" method="post">
+                <form action="" method="post">
                     <fieldset>
-
                         <label for="nombre"> Nombre: </label>
                         <br>
-                        <input type="text" name="nombre" placeholder="ingrese nombre del articulo" required>
+                        <input type="text" name="nombre" value="<?php echo $producto->nombre ?>">
                         <br>
                         <label for="descripcion"> Descripcion: </label>
                         <br>
-                        <textarea type="text" name="descripcion" placeholder="caracteristicas del producto" cols="72"
-                            rows="3" maxlength="300" required></textarea>
+                        <textarea type="text" name="descripcion"  cols="72" rows="3" maxlength="300" ><?php  echo $producto->descripcion ?></textarea>
                         <br>
                         <label for="precio"> Precio </label>
                         <br>
-                        <input type="number" name="precio" placeholder="ingrese precio" min="0" max="10000000" required>
+                        <input type="number" name="precio"  min="0" max="100000000" value="<?php  echo $producto->precio ?>">
                         <br>
-                        <button type="submit" class="btn btn-primary" name="submit">Agregar Producto</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Actualizar Producto</button>
                     </fieldset>
                 </form>
             </div>
