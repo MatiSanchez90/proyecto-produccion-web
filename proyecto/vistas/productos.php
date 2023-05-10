@@ -1,7 +1,9 @@
 <?php 
+session_start();
 require_once('../configuracion/configuracion.php');
 require_once('../modelo/conexion.php');
 require_once('../modelo/producto.php');
+require_once('../controlador/controladorAddProducto.php');
 
 try {
   $producto = Producto::all();
@@ -9,8 +11,6 @@ try {
   echo 'ha ocurrido un error';
   exit;
 }
-
-
 
 ?>
 <!doctype html>
@@ -34,16 +34,35 @@ try {
 
 <body>
     <!--NAVBAR-->
-    <?php require_once('../layout/_nav.php') ?>
+    <nav class="navbar navbar-expand-lg navbar-light fondo">
+        <a class="navbar-brand text-white font-weight-bold font" href="../vistas/index.php"><img
+                src="../img/chikitopclogo.png" alt="Chiquito PC Logo" class="tamano">CHIQUITO PC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        </div>
+        <div class="collapse navbar-collapse opciones_usuario" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                        href="../vistas/perfil.php"><?php echo 'Bienvenido Admin ('.$_SESSION["nombre"].')';?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../modelo/cierre_sesion.php">Cerrar
+                        Sesion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <!-- CONTENIDO -->
-
-
-
-    <div class="container">
-        <h1 class="text-center"> Lista de productos </h1>
+    <div class="container tamano4 tamano5 tamano6">
+        <h1 class="text-center mt-5"> Lista de productos </h1>
         <div class="container">
-            <div><a class="btn btn-primary btn-block btn2" href="agregar_producto.php">Agregar Producto</a></div>
-            <table class="table">
+            <table class="table mt-5">
                 <thead>
                     <tr>
                         <th scope="col"> Nombre </th>
@@ -59,12 +78,19 @@ try {
                         <td> <?php echo $p['nombre'] ?> </td>
                         <td> <?php echo $p['descripcion'] ?> </td>
                         <td> <?php echo $p['precio'] ?> </td>
-                        <td><a href="../controlador/controladorUpdateProducto.php?id=<?php echo $p ['id'] ?>">Actualizar</a></td>
-                        <td><a href="../controlador/controladorDeleteProducto.php?id=<?php echo $p ['id'] ?>">Eliminar</a></td>
+                        <td><a
+                                href="../controlador/controladorUpdateProducto.php?id=<?php echo $p ['id'] ?>">Actualizar</a>
+                        </td>
+                        <td><a
+                                href="../controlador/controladorDeleteProducto.php?id=<?php echo $p ['id'] ?>">Eliminar</a>
+                        </td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>
+
             </table>
+            <div><a class="btn btn-dark btn-block btn2 mt-4 mb-3" href="agregar_producto.php">Agregar Producto</a></div>
+            <div><a class="btn btn-secondary btn-block btn2 mb-3" href="index_admin.php">Volver atras</a></div>
         </div>
     </div>
 

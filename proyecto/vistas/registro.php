@@ -67,7 +67,7 @@
                     Usuario</button>
             </div>
             <div class="form-group">
-                <a class="btn btn-block btn-secondary create-account2" href="login.php">Volver atrás</a>
+                <a class="btn btn-block btn-secondary create-account2 mb-5" href="login.php">Volver atrás</a>
             </div>
         </form>
         <div class="social-media">

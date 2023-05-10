@@ -3,15 +3,14 @@ session_start();
 require_once('../configuracion/configuracion.php');
 require_once('../modelo/conexion.php');
 require_once('../modelo/usuario.php');
-require_once('../controlador/controladorAddUsuario.php');
+require_once('../controlador/controladorUpdateUsuario.php');
 
 try {
-  $usuario = Usuario::all();
+    $usuario = Usuario::buscar($id);
 } catch (PDOException $e) {
-  echo 'Ha ocurrido un error';
+  echo 'ha ocurrido un error';
   exit;
 }
-
 ?>
 
 <!doctype html>
@@ -59,15 +58,62 @@ try {
             </ul>
         </div>
     </nav>
-    <!-- CONTENIDO -->
-    <div class="container">
-        <h1 class="mt-3 d-flex justify-content-center">Seccion Administrador</h1>
-        <img class="d-flex justify-content-center ml-5 admin" src="../img/admin.jpg" width="340" alt="">
-        <div class="login-dark">
-            <div><a class="btn btn-dark btn-block btn2 mb-3" href="usuarios.php">Ver Lista Usuarios</a></div>
-            <div><a class="btn btn-secondary btn-block btn2 mb-5" href="productos.php">Ver Lista Productos</a></div>
+
+
+    <!--CONTENIDO-->
+
+    <div class="container tamano4 tamano6">
+        <div class="row">
+            <div class="col-lg-6 col-xs-12 d-flex justify-content-center">
+                <div>
+                    <h1 class="font-weight-bold text-center">ACTUALIZAR PRODUCTO</h1>
+                    <img class="d-flex tamano7 margen" src="../img/chikitopc.png" alt="Logo de ChiquitoPC">
+                </div>
+            </div>
+            <div class="container col-lg-6 col-xs-12">
+                <form action="" method="post">
+                    <fieldset>
+                        <label for="nombre"> <b>Nombre: </b> </label>
+                        <br>
+                        <input type="text" name="nombre" value="<?php echo $usuario->nombre ?>">
+                        <br>
+                        <label class="mt-2" for="apellido"> <b>Apellido: </b> </label>
+                        <br>
+                        <input type="text" name="apellido" value="<?php echo $usuario->apellido ?>">
+                        <br>
+                        <label for="mail"> <b>Mail: </b> </label>
+                        <br>
+                        <input type="text" name="mail" min="0" max="100000000" value="<?php  echo $usuario->mail ?>">
+                        <br>
+                        <label class="mt-2" for="nombre_usuario"> <b>Nombre Usuario: </b> </label>
+                        <br>
+                        <input type="text" name="nombre_usuario" min="0" max="100000000"
+                            value="<?php  echo $usuario->nombre_usuario ?>">
+                        <br>
+                        <label class="mt-2" for="clave"> <b>Clave: </b> </label>
+                        <br>
+                        <input type="text" name="clave" min="0" max="100000000" value="<?php  echo $usuario->clave ?>">
+                        <br>
+                        <label class="mt-2" for="is_admin"> <b>Es Admin: </b> </label>
+                        <br>
+                        <input type="text" name="is_admin" min="0" max="100000000"
+                            value="<?php  echo $usuario->is_admin ?>">
+                        <br>
+                        <button type="submit" class="btn btn-block btn-dark mt-3" name="submit">Actualizar
+                            Usuario</button>
+                        <div><a class="btn btn-secondary btn-block btn2 mt-3" href="../vistas/usuarios.php">Volver
+                                atras</a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <!-- FOOTER -->
     <?php require_once('../layout/_footer.php') ?>
     <script src="../lib/jquery/jquery-3.3.1.min.js"></script>

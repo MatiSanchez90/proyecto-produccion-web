@@ -1,8 +1,10 @@
 <?php 
+session_start();
 require_once('../configuracion/configuracion.php');
 require_once('../modelo/conexion.php');
 require_once('../modelo/producto.php');
 require_once('../controlador/controladorUpdateProducto.php');
+
 try {
     $producto = Producto::buscar($id);
 } catch (PDOException $e) {
@@ -32,35 +34,62 @@ try {
 
 <body>
     <!--NAVBAR-->
-    <?php require_once('../layout/_nav.php') ?>
+    <nav class="navbar navbar-expand-lg navbar-light fondo">
+        <a class="navbar-brand text-white font-weight-bold font" href="../vistas/index.php"><img
+                src="../img/chikitopclogo.png" alt="Chiquito PC Logo" class="tamano">CHIQUITO PC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        </div>
+        <div class="collapse navbar-collapse opciones_usuario" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                        href="../vistas/perfil.php"><?php echo 'Bienvenido Admin ('.$_SESSION["nombre"].')';?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../modelo/cierre_sesion.php">Cerrar
+                        Sesion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <!--CONTENIDO-->
 
-    <div class="container tamano4 tamano5 tamano6 d-flex justify-content-center">
+    <div class="container tamano4 tamano5 tamano6">
         <div class="row">
-            <div class="col-lg-6 col-xs-12 d-flex justify-content-center">
+            <div class="col-lg-6 col-xs-12">
                 <div>
                     <h1 class="font-weight-bold text-center">ACTUALIZAR PRODUCTO</h1>
                     <img class="d-flex tamano7 margen" src="../img/chikitopc.png" alt="Logo de ChiquitoPC">
                 </div>
             </div>
-            <div class="container d-flex justify-content-center col-lg-6 col-xs-12">
+            <div class="container col-lg-6 col-xs-12">
                 <form action="" method="post">
-                    <fieldset>
-                        <label for="nombre"> Nombre: </label>
+                    <fieldset class="ml-2">
+                        <label for="nombre"> <b>Nombre: </b></label>
                         <br>
                         <input type="text" name="nombre" value="<?php echo $producto->nombre ?>">
                         <br>
-                        <label for="descripcion"> Descripcion: </label>
+                        <label class="mt-2" for="descripcion"><b>Descripción: </b></label>
                         <br>
-                        <textarea type="text" name="descripcion"  cols="72" rows="3" maxlength="300" ><?php  echo $producto->descripcion ?></textarea>
+                        <textarea type="text" name="descripcion" cols="72" rows="3"
+                            maxlength="300"><?php  echo $producto->descripcion ?></textarea>
                         <br>
-                        <label for="precio"> Precio </label>
+                        <label for="precio"> <b>Precio: </b></label>
                         <br>
-                        <input type="number" name="precio"  min="0" max="100000000" value="<?php  echo $producto->precio ?>">
+                        <input type="number" name="precio" min="0" max="100000000"
+                            value="<?php  echo $producto->precio ?>">
                         <br>
-                        <button type="submit" class="btn btn-primary" name="submit">Actualizar Producto</button>
+                        <button type="submit" class="btn btn-block btn-dark btn2  mt-5" name="submit">Actualizar
+                            Producto</button>
+                        <div><a class="btn btn-secondary btn-block btn2 mt-3" href="productos.php">Volver atras</a>
+                        </div>
                     </fieldset>
                 </form>
             </div>

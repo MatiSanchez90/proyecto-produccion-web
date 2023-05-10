@@ -4,11 +4,11 @@ require_once('../modelo/conexion.php');
 require_once('../modelo/usuario.php');
 
 
-$nombre = test_input($_POST["nombre"] ?? null);
-$apellido = test_input($_POST["apellido"] ?? null);
-$mail = test_input($_POST["mail"] ?? null);
-$nombre_usuario = test_input($_POST["nombre_usuario"] ?? null);
-$clave = test_input($_POST["clave"] ?? null);
+$nombre = test_inputUsuario($_POST["nombre"] ?? null);
+$apellido = test_inputUsuario($_POST["apellido"] ?? null);
+$mail = test_inputUsuario($_POST["mail"] ?? null);
+$nombre_usuario = test_inputUsuario($_POST["nombre_usuario"] ?? null);
+$clave = test_inputUsuario($_POST["clave"] ?? null);
 
 $erroresUsuario = array();
 
@@ -36,7 +36,7 @@ if( isset($_POST["submit"]) ) {
       }
   }
 
-function test_input($data) {
+function test_inputUsuario($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);

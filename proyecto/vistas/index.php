@@ -3,6 +3,7 @@ session_start();
 require_once('../configuracion/configuracion.php');
 require_once('../modelo/conexion.php');
 require_once('../modelo/usuario.php');
+require_once('../controlador/controladorAddUsuario.php');
 
 
 try {
@@ -49,19 +50,13 @@ try {
             <?php endforeach ?>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link col-md-6 text-white" href="../vistas/productos.php">Productos</a>
+                    <a class="nav-link col-md-6 text-white" href="../vistas/productos_usuario.php">Productos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="../vistas/soporte.php">Soporte</a>
                 </li>
                 <li>
                     <a class="nav-link text-white" href="../vistas/sobrenosotros.php">Nosotros</a>
-                </li>
-                <li>
-                    <a class="nav-link text-white" href="../vistas/checkout.php">Checkout</a>
-                </li>
-                <li>
-                    <a class="nav-link text-white" href="../vistas/consulta.php">Consulta</a>
                 </li>
             </ul>
         </div>
@@ -70,7 +65,7 @@ try {
 
                 <li class="nav-item">
                     <a class="nav-link col-md-6 text-white"
-                        href="../vistas/perfil.php"><?php echo 'Bienvenido '.$_SESSION["nombre"];?> </a>
+                        href="../vistas/perfil.php"><?php echo 'Bienvenido '.@$_SESSION["nombre"];?> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="../vistas/login.php" <?php session_destroy();?>>Cerrar

@@ -8,12 +8,11 @@ require_once('../controlador/controladorAddUsuario.php');
 try {
   $usuario = Usuario::all();
 } catch (PDOException $e) {
-  echo 'Ha ocurrido un error';
+  echo 'ha ocurrido un error';
   exit;
 }
 
 ?>
-
 <!doctype html>
 <html lang="es">
 
@@ -60,16 +59,47 @@ try {
         </div>
     </nav>
     <!-- CONTENIDO -->
-    <div class="container">
-        <h1 class="mt-3 d-flex justify-content-center">Seccion Administrador</h1>
-        <img class="d-flex justify-content-center ml-5 admin" src="../img/admin.jpg" width="340" alt="">
-        <div class="login-dark">
-            <div><a class="btn btn-dark btn-block btn2 mb-3" href="usuarios.php">Ver Lista Usuarios</a></div>
-            <div><a class="btn btn-secondary btn-block btn2 mb-5" href="productos.php">Ver Lista Productos</a></div>
-        </div>
+
+    <div class="container_usuarios">
+        <h1 class="text-center mt-5"> Lista de Usuarios </h1>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col "> Nombre </th>
+                    <th scope="col"> Apellido </th>
+                    <th scope="col"> Mail </th>
+                    <th scope="col"> Nombre Usuario </th>
+                    <th scope="col"> Clave </th>
+                    <th scope="col"> Es Admin </th>
+                    <th scope="col"> Actualizar </th>
+                    <th scope="col"> Eliminar </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($usuario as $usu): ?>
+                <tr>
+                    <td> <?php echo $usu['nombre'] ?> </td>
+                    <td> <?php echo $usu['apellido'] ?> </td>
+                    <td> <?php echo $usu['mail'] ?> </td>
+                    <td> <?php echo $usu['nombre_usuario'] ?> </td>
+                    <td> <?php echo $usu['clave'] ?> </td>
+                    <td> <?php echo $usu['is_admin'] ?> </td>
+                    <td><a
+                            href="../controlador/controladorUpdateUsuario.php?id=<?php echo $usu['id_usuario'] ?>">Actualizar</a>
+                    </td>
+                    <td><a
+                            href="../controlador/controladorDeleteUsuario.php?id=<?php echo $usu['id_usuario'] ?>">Eliminar</a>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+        <div><a class="btn btn-secondary btn-block btn2 mb-5 mt-4" href="index_admin.php">Volver atras</a></div>
     </div>
+
     <!-- FOOTER -->
     <?php require_once('../layout/_footer.php') ?>
+
     <script src="../lib/jquery/jquery-3.3.1.min.js"></script>
     <script src="../lib/popper/popper.min.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.min.js"></script>

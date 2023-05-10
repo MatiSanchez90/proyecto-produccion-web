@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="es">
 
@@ -19,16 +22,37 @@
 
 <body>
     <!--NAVBAR-->
-    <?php require_once('../layout/_nav.php') ?>
+    <nav class="navbar navbar-expand-lg navbar-light fondo">
+        <a class="navbar-brand text-white font-weight-bold font" href="../vistas/index.php"><img
+                src="../img/chikitopclogo.png" alt="Chiquito PC Logo" class="tamano">CHIQUITO PC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        </div>
+        <div class="collapse navbar-collapse opciones_usuario" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mt-lg-0">
 
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                        href="../vistas/perfil.php"><?php echo 'Bienvenido Admin ('.$_SESSION["nombre"].')';?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../modelo/cierre_sesion.php">Cerrar
+                        Sesion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <!--CONTENIDO-->
 
-    <div class="container tamano4 tamano5 tamano6 d-flex justify-content-center">
+    <div class="container tamano4 tamano5 tamano6 ">
         <div class="row">
             <div class="col-lg-6 col-xs-12 d-flex justify-content-center">
                 <div>
-                    <h1 class="font-weight-bold text-center">ALTA PROUCTO</h1>
+                    <h1 class="font-weight-bold text-center">ALTA PRODUCTO</h1>
                     <ul>
                         <?php require_once('../controlador/controladorAddProducto.php') ?>
                         <?php foreach($errores as $error): ?>
@@ -38,24 +62,27 @@
                     <img class="d-flex tamano7 margen" src="../img/chikitopc.png" alt="Logo de ChiquitoPC">
                 </div>
             </div>
-            <div class="container d-flex justify-content-center col-lg-6 col-xs-12">
+            <div class="container col-lg-6 col-xs-12">
                 <form action="agregar_producto.php" method="post">
-                    <fieldset>
+                    <fieldset class="ml-2">
 
-                        <label for="nombre"> Nombre: </label>
+                        <label for="nombre"><b>Nombre: </b></label>
                         <br>
-                        <input type="text" name="nombre" placeholder="ingrese nombre del articulo" required>
+                        <input type="text" name="nombre" placeholder="Nombre del articulo" required>
                         <br>
-                        <label for="descripcion"> Descripcion: </label>
+                        <label class="mt-2" for="descripcion"> <b>Descripción: </b> </label>
                         <br>
-                        <textarea type="text" name="descripcion" placeholder="caracteristicas del producto" cols="72"
+                        <textarea type="text" name="descripcion" placeholder=" Caracteristicas del producto" cols="72"
                             rows="3" maxlength="300" required></textarea>
                         <br>
-                        <label for="precio"> Precio </label>
+                        <label for="precio"> <b>Precio: </b> </label>
                         <br>
-                        <input type="number" name="precio" placeholder="ingrese precio" min="0" max="10000000" required>
+                        <input type="number" name="precio" placeholder="Precio" min="0" max="10000000" required>
                         <br>
-                        <button type="submit" class="btn btn-primary" name="submit">Agregar Producto</button>
+                        <button type="submit" class="btn btn-dark btn-block  mt-5" name="submit">Agregar
+                            Producto</button>
+                        <div><a class="btn btn-secondary btn-block btn2 mt-3" href="productos.php">Volver atras</a>
+                        </div>
                     </fieldset>
                 </form>
             </div>

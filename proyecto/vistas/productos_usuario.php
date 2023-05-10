@@ -1,36 +1,18 @@
-<?php
+<?php 
 session_start();
-require_once('../funciones/validador.php');
 require_once('../configuracion/configuracion.php');
+require_once('../modelo/conexion.php');
+require_once('../modelo/producto.php');
+require_once('../controlador/controladorAddProducto.php');
 
-
-$nombre = test_input($_POST["nombre"] ?? null);
-$email = test_input($_POST["email"] ?? null);
-$mensaje = test_input($_POST["mensaje"] ?? null);
-
-$errores = array();
-
-if( isset($_POST["submit"]) ) {
-
-  if( empty($nombre) ){
-    array_push($errores, 'Usted debe ingresar un nombre.');
+try {
+  $producto = Producto::all();
+} catch (PDOException $e) {
+  echo 'ha ocurrido un error';
+  exit;
 }
 
-if( filter_var($email, FILTER_VALIDATE_EMAIL) == FALSE ){
-  array_push($errores, 'Usted debe ingresar un correo electrónico con formato válido.');
-}
-
-  if( empty($mensaje) ){
-    array_push($errores, 'Usted debe dejar algun mensaje.');
-}
-
-if( count($errores) == 0 ){
-  require "insertdatabase.php";
-}
-}
 ?>
-
-
 <!doctype html>
 <html lang="es">
 
@@ -87,55 +69,39 @@ if( count($errores) == 0 ){
             </ul>
         </div>
     </nav>
+    <!-- CONTENIDO -->
+    <div class="container tamano4 tamano5 tamano6">
+        <h1 class="text-center mt-5"> Lista de productos </h1>
+        <div class="container">
+            <table class="table mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col"> Nombre </th>
+                        <th scope="col"> Descripcion </th>
+                        <th scope="col"> Precio </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($producto as $p): ?>
+                    <tr>
+                        <td> <?php echo $p['nombre'] ?> </td>
+                        <td> <?php echo $p['descripcion'] ?> </td>
+                        <td> <?php echo $p['precio'] ?> </td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
 
-
-    <!--CONTENIDO-->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-xs-12 d-flex justify-content-center">
-                <div>
-                    <h1 class="font-weight-bold text-center mt-4">¡CONTACTANOS!</h1>
-                    <ul>
-                        <?php foreach($errores as $error): ?>
-                        <li class="text text-danger"> <?php echo $error ?> </li>
-                        <?php endforeach ?>
-                    </ul>
-                    <img class="d-flex tamano7 margen" src="../img/chikitopc.png" alt="Logo de ChiquitoPC">
-                    <p class="text-center font-weight-bold">Usá el formulario, llamanos gratuitamente al <br />
-                        0800-999-1111 de
-                        lunes a sábado de 9 a 20hs o <br />escribinos por Whatsapp al +54 9 11-2233-4455.</p>
-                    <p class="text-center font-weight-bold">Haremos todo lo posible para contestarte a la brevedad.</p>
-                </div>
-            </div>
-            <div class="container col-lg-6 col-xs-12 mt-4">
-                <form action="soporte.php" method="post">
-                    <fieldset>
-                        <label for="nombre"> Nombre: </label>
-                        <br>
-                        <input type="text" name="nombre" size="70" required>
-                        <br>
-                        <label for="email"> Email: </label>
-                        <br>
-                        <input type="email" name="email" size="70" required>
-                        <br>
-                        <label for="mensaje"> Mensaje </label>
-                        <br>
-                        <textarea name="mensaje" cols="72" rows="10" maxlength="500" required></textarea>
-                        <br>
-                        <button type="submit" class="btn btn-dark" name="submit">Enviar</button>
-                    </fieldset>
-                </form>
-            </div>
+            </table>
+            <div><a class="btn btn-secondary btn-block btn2 mb-3" href="index.php">Volver atras</a></div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
+
+
+
 
     <!-- FOOTER -->
     <?php require_once('../layout/_footer.php') ?>
+
     <script src="../lib/jquery/jquery-3.3.1.min.js"></script>
     <script src="../lib/popper/popper.min.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.min.js"></script>

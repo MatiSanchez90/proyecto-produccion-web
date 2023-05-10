@@ -55,7 +55,7 @@ try {
     </nav>
 
     <!-- CONTENIDO -->
-    <div class="container">
+    <div class="container tamano4 tamano5 tamano6">
         <h1 class="mt-5">Inicie sesión ó cree una cuenta nueva.</h1>
         <div class="login-dark mt-5">
             <form method="post">
@@ -76,7 +76,7 @@ try {
                 <div class="btn-submit">
                     <div class="form-group"><button type="submit" class="btn btn-dark btn-block">Ingresar</button>
                     </div>
-                    <div><a class="btn btn-secondary btn-block btn2" href="registro.php">Crear Usuario</a></div>
+                    <div><a class="btn btn-secondary btn-block btn2 mb-5" href="registro.php">Crear Usuario</a></div>
                 </div>
             </form>
 
@@ -88,26 +88,28 @@ try {
                 
                if($usu["nombre_usuario"] == $usuarioEntrante && $usu["clave"] == $claveEntrante && $usu["is_admin"] == "false"){
                 $_SESSION['nombre'] = $usu["nombre"];
-               
-             /*   echo '<script type="text/javascript">
-                          window.onload = function () { alert("Bienvenido"); }
-            </script>';*/
+             echo '<script type="text/javascript">
+                          window.onload = function () { alert("Bienvenido!"); }
+            </script>';
             header("Location: http://localhost:8080/TP1/proyecto-produccion-web/proyecto/vistas/index.php");
+   
             }else if($usu["nombre_usuario"] == $usuarioEntrante && $usu["clave"] == $claveEntrante && $usu["is_admin"] == "true"){
                 $_SESSION['nombre'] = $usu["nombre"];
+                $_SESSION['is_admin'] = $usu["is_Admin"];
               
                 header("Location: http://localhost:8080/TP1/proyecto-produccion-web/proyecto/vistas/index_admin.php");
-         /*   echo '<script type="text/javascript">
-            window.onload = function() {
-                alert("Usuario o clave incorrectos.");
-            }
-            </script>';*/
-            }else{
-                /*   echo '<script type="text/javascript">
+            }else if($usu["nombre_usuario"] != $usuarioEntrante &&  $usu["clave"] != $claveEntrante){
+                  echo '<script type="text/javascript">
                    window.onload = function() {
-                       alert("Usuario o clave incorrectos.");
+                       alert("Usuario o clave incorrectos o vacios.");
                    }
-                   </script>';*/
+                   </script>';
+                }else{
+                    echo '<script type="text/javascript">
+                   window.onload = function() {
+                       alert("Debe agregar informacion valida.");
+                   }
+                   </script>';
                 }
         endforeach;
 

@@ -24,7 +24,7 @@
 }
 
 .centrado2 {
-  padding-bottom: 2.5em;
+  padding-bottom: 2em;
 }
 
 .fuente {
@@ -36,7 +36,7 @@
 }
 
 .tamano5 {
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 }
 
 .tamano6 {
@@ -90,12 +90,18 @@ h3 {
   font-family: "Roboto Mono", monospace;
 }
 
-/*login*/
 .container {
-  width: 600px;
+  width: 700px;
   height: auto;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
 }
+.container_usuarios {
+  margin-left: 330px;
+  margin-right: 330px;
+  height: auto;
+  padding-bottom: 10px;
+}
+
 .text-dark {
   font-size: 1.7em;
   padding-bottom: 40px;
